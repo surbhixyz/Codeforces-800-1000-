@@ -1,0 +1,41 @@
+        import java.util.*;
+
+        public class Solution {
+            
+            public static void isBeautiful(int n1, int n2, String S1, String S2){
+                
+                String rev="";
+                for(int i=0; i<n2; i++){
+        		    rev=S2.charAt(i)+""+rev;
+        		}
+    		
+    		String newStr=S1+""+rev;
+    		int c=0;
+    		for(int i=1; i<newStr.length(); i++){
+    		    if(newStr.charAt(i-1)==newStr.charAt(i)){
+    		        c++;
+    		    }
+    		    if(c>1){
+    		        System.out.println("NO");
+    		        return;
+    		    }
+    		}
+    		System.out.println("YES");
+            }
+            
+	        public static void main(String[] args) {
+	            
+            Scanner in = new Scanner(System.in);
+    		int n = in.nextInt();
+    		for(int i=0; i<n; i++){
+    		    int n1=in.nextInt();
+        		int n2=in.nextInt();
+                String S1=in.next();
+                String S2=in.next();
+                isBeautiful(n1, n2, S1, S2);
+    		}
+    	    
+    		in.close();
+        
+	        }
+        }

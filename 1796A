@@ -1,0 +1,79 @@
+        import java.util.*;
+
+        public class Solution {
+            
+	        public static void main(String[] args) {
+	            
+            String mstr="";
+            for(int i=3; i<1000; i++){
+                if(i%3==0 && i%5!=0){
+                    mstr=mstr+""+"F";
+                }
+                
+                else if(i%5==0 && i%3!=0){
+                    mstr=mstr+""+"B";
+                }
+                
+                else if(i%3==0 && i%5==0){
+                    mstr=mstr+""+"FB";
+                }
+            }
+            
+            Scanner in = new Scanner(System.in);
+    		int n = in.nextInt();
+    
+    	        for(int i=0; i<n; i++){
+        	    int k = in.nextInt();
+                String s = in.next();
+                
+                if (mstr.contains(s)) {
+                    System.out.println("YES");
+                 }
+                 
+                else {
+                System.out.println("NO");
+            }
+    	   }
+    	            
+    		in.close();
+    		
+    		
+	        }
+        }
+        
+        
+        
+ //////////////////////////////////////////
+ 
+ Alternate approach
+ 
+ 
+ Instead of using String.contains() function we can use Longest Common Substring (LCS) concept as well
+ 
+ 
+ 
+ 
+ private static int longestCommonSubstring(String s1, String s2) {
+        int m = s1.length();
+        int n = s2.length();
+        int[][] dp = new int[m+1][n+1];
+        int maxLength = 0;
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (s1.charAt(i-1) == s2.charAt(j-1)) {
+                    dp[i][j] = dp[i-1][j-1] + 1;
+                    maxLength = Math.max(maxLength, dp[i][j]);
+                } else {
+                    dp[i][j] = 0;
+                }
+            }
+        }
+        return maxLength;
+        
+    }
+    
+    
+    if length of the input string == length of LCS
+    print "YES"
+    else
+    print "NO"

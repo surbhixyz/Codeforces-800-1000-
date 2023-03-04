@@ -1,0 +1,56 @@
+        import java.util.*;
+
+        public class Solution {
+            
+            public static String IdealPoint(int [] left, int [] right, int x, int n){
+               boolean lflag=false;
+               boolean rflag=false;
+               
+               for(int i=0; i<n; i++){
+                   if(left[i]==x){
+                       lflag=true;
+                   }
+                   if(right[i]==x){
+                       rflag=true;
+                   }
+               }
+               
+              if(rflag && lflag)
+              return "YES";
+              else
+              return "NO";
+               
+                }
+                
+            
+	        public static void main(String[] args) {
+	            
+                Scanner in = new Scanner(System.in);
+        		int num = in.nextInt();
+        		
+        		for(int j=0; j<num; j++){
+        		    
+        		   int n=in.nextInt();
+        		   int x=in.nextInt();
+        		   int [] left= new int [n];
+        		   int [] right= new int [n];
+        		   
+        		   for(int i=0; i<n; i++){
+        		       left[i]=in.nextInt();
+        		       right[i]=in.nextInt();
+        		   }
+        		   
+                   String ans=IdealPoint(left,right, x, n);
+                   System.out.println(ans);
+        		}
+        	    
+        		in.close();
+	        }
+        }
+        
+        
+        
+       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        A point k can be Ideal if and only if it's the leftmost point of any segment (l) and the rightmost point of any segment (r).
+        If this is true, you can basically erase every other segment, thus being able to convert k to an Ideal Point.

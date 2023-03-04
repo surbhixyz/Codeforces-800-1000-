@@ -1,0 +1,52 @@
+        import java.util.*;
+
+        public class Solution {
+           
+            public static int Traffic(String str, char x){
+                
+                String newString=str+""+str;
+                if(x=='g'){
+                    return 0;
+                }
+                int k=0;
+                int ans=0;
+                ArrayList <Integer> green= new ArrayList <>();
+                for(int i=0; i<newString.length(); i++){
+                    if(newString.charAt(i)=='g'){
+                        green.add(i);
+                    }
+                }
+               
+               for(int i=0; i<str.length(); i++){
+                   int j=0;
+                   if(str.charAt(i)==x){
+                       
+                       while(i>green.get(j)){
+                           j++;
+                       }
+                       ans=Math.max(ans,green.get(j)-i);
+                   }
+               }
+                return ans;
+                
+            }
+            
+	        public static void main(String[] args) {
+	            
+                Scanner in = new Scanner(System.in);
+        		int num = in.nextInt();
+        		
+        		for(int j=0; j<num; j++){
+        		    
+        		   int n=in.nextInt();
+        		   char x=in.next().charAt(0);
+        		   String str=in.next();
+        		   
+        		   int ans=Traffic(str, x);
+        		   System.out.println(ans);
+        		 
+        		}
+        	    
+        		in.close();
+	        }
+        }

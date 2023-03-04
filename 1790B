@@ -1,0 +1,55 @@
+        import java.util.*;
+
+        public class Solution {
+            
+            public static void Dice(int n, int s ,int r){
+                
+                System.out.print(s-r);
+                int x=r/(n-1);
+                int rem=r%(n-1);
+                for(int i=0; i<n-1; i++){
+                    if(rem>0){
+                        System.out.print(" "+(x+1));
+                    }
+                    else{
+                        System.out.print(" "+x);
+                    }
+                    
+                    rem--;
+                }
+                
+            }
+	        public static void main(String[] args) {
+	            
+                Scanner in = new Scanner(System.in);
+        		int num = in.nextInt();
+        		
+        		for(int i=0; i<num; i++){
+        		    
+        		    int n=in.nextInt();
+        		    int s=in.nextInt();
+                    int r=in.nextInt();
+                    Dice(n,s,r);
+                    System.out.println();
+                    
+        		}
+        	    
+        		in.close();
+	        }
+        }
+        
+        
+        ///////////////////////////////////////////
+        
+        5 17 11
+        highest number= 17-11=6
+        we need to find remaining 4 numbers
+        a,b,c,d ( less than 6)
+        a+b+c+d=11
+        
+        11/4=2
+        11%4=3
+        
+        2+2+2+2=8 ( remainder=3)
+        so 
+        (2+1) + (2+1) + (2+1) + 1

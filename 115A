@@ -1,0 +1,54 @@
+        import java.util.*;
+
+        public class Solution {
+            static ArrayList <ArrayList <Integer>> graph= new ArrayList <ArrayList<Integer>>();
+            
+           // undirected graph
+            public static void addEdge( ArrayList <ArrayList<Integer>> adj, int u, int v){
+                adj.get(u).add(v);
+            }
+            
+            public static void dfs(int root, int parent, int [] dp){
+                dp[root]=1;
+                int max=0;
+                
+                for(int child: graph.get(root)){
+                    if(child==parent){
+                        continue;
+                    }
+                    else{
+                        dfs(child, root, dp);
+                        max=Math.max(max, dp[child]);
+                    }
+                }
+                
+                dp[root]+=max;
+            }
+	        public static void main(String[] args) {
+	            
+                Scanner in = new Scanner(System.in);
+        		      
+        		      int n=in.nextInt();
+        		      int [] dp= new int[n+1];
+        		      
+        		      for(int i=0; i<=n; i++){
+        		          graph.add(new ArrayList <Integer>());
+        		      }
+        		      
+        		      for(int i=1; i<=n; i++){
+        		          int boss=in.nextInt();
+        		          
+        		          if(boss==-1){
+        		              addEdge(graph, 0, i);
+        		          }
+        		          else{
+        		              addEdge(graph, boss, i);
+        		          }
+        		      }
+        	
+        		in.close();
+        		
+        		dfs(0,0,dp);
+        		System.out.println(dp[0]-1);
+	        }
+        }

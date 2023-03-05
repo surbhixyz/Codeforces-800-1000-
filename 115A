@@ -52,3 +52,19 @@
         		System.out.println(dp[0]-1);
 	        }
         }
+	
+	
+	
+	
+	//////////////////////////////////////////////////////////////////////////
+	
+	1. The dp array is then initialized to store the minimum number of groups required to cover each employee in the company.
+	
+	2. The dfs function performs a depth-first search on the tree rooted at the given root node,
+	   computes the minimum number of groups required to cover the subtree rooted at root, and stores it in the dp array.
+	   
+	3. By setting the value of "dp[root]" to 1, we are considering that the current node itself can form a group.
+	
+	4. The call "dfs(child, root, dp)" is a recursive function call to the "dfs" function. 
+	   This call is made for the "child" node which is a neighbor of the "root" node in the graph.
+	   In this call, the "child" node becomes the new "root" node and "root" becomes the parent of the "child" node. 

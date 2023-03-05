@@ -1,0 +1,50 @@
+        import java.util.*;
+
+        public class Solution {
+           
+                public static void Function(int [] a, int n){
+                    
+                    int inc=0;
+                    int dec=0;
+                    int f=0;
+                    
+                    for(int i=1; i<n; i++){
+                        
+                        if(a[i-1]<a[i]){
+                            inc++;
+                        }
+                        
+                        if(a[i]<a[i-1]){
+                                dec++;
+                                
+                             if(inc>0){
+                                f++;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if(f==0) System.out.println("YES");
+                    else System.out.println("NO");
+                }
+            
+	        public static void main(String[] args) {
+	            
+                Scanner in = new Scanner(System.in);
+        		  int num=in.nextInt();
+
+        		  for(int j=0; j<num; j++){
+        		      
+        		      int n=in.nextInt();
+        		      int [] arr= new int[n];
+        		      
+        		      for(int i=0; i<n; i++){
+        		          arr[i]=in.nextInt();
+        		      }
+        		      
+        		      Function(arr, n);
+        		  }
+        		      
+        		in.close();
+	        }
+        }

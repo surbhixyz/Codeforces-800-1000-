@@ -1,0 +1,35 @@
+        import java.util.*;
+
+        public class Solution {
+           
+            public static void Coach(int [] arr, int power, int n){
+                Arrays.sort(arr);
+                int j=0;
+                int ans=0;
+                for(int i=n-1; i>=j; i--){
+                    int k=power/arr[i];
+                    
+                    while(k-->0)j++;
+                    
+                    if(j<=i) ans++;
+                }
+                
+                System.out.println(ans);
+            }
+            
+	        public static void main(String[] args) {
+	            
+                Scanner in = new Scanner(System.in);
+        
+        		  int n=in.nextInt();
+        		  int power=in.nextInt();
+        		 
+        		  int [] arr= new int [n];
+        		  for(int i=0; i<n; i++){
+        		      arr[i]=in.nextInt();
+        		  }
+        		      Coach(arr, power, n);
+        	
+        		in.close();
+	        }
+        }

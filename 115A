@@ -68,3 +68,6 @@
 	4. The call "dfs(child, root, dp)" is a recursive function call to the "dfs" function. 
 	   This call is made for the "child" node which is a neighbor of the "root" node in the graph.
 	   In this call, the "child" node becomes the new "root" node and "root" becomes the parent of the "child" node. 
+	
+	5. The purpose of "if(child==parent)" check is to avoid traversing the same path multiple times and prevent an infinite loop in the DFS traversal.
+	   If the child node is indeed the parent node, then we skip the iteration using the "continue" statement, because we don't want to revisit the parent node.

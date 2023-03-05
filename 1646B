@@ -1,0 +1,66 @@
+        import java.util.*;
+
+        public class Solution {
+           
+                public static void Function(long [] a, int n){
+                    int r=0; int b=0;
+                    Arrays.sort(a);
+                    int i=0, j=n-1;
+                    long red=a[j]; long blue=a[i];
+                    r++; b++;
+                    
+                    if(red==blue){
+                        System.out.println("NO");
+                        return;
+                    }
+                    i++; j--;
+                    
+                    while(i<=j){
+                        
+                        if(a[i]+blue<red){
+                            blue+=a[i];
+                            i++;
+                            b++;
+                        }
+                        else{
+                            red+=a[j];
+                            j--;
+                            r++;
+                        }
+                        
+                        if(r<b){
+                            System.out.println("YES");
+                            return;
+                        }
+                        
+                    }
+                    System.out.println("NO");
+                    
+                }
+            
+	        public static void main(String[] args) {
+	            
+                Scanner in = new Scanner(System.in);
+        		  int num=in.nextInt();
+
+        		  for(int j=0; j<num; j++){
+        		      
+        		      int n=in.nextInt();
+        		      long [] arr= new long[n];
+        		      
+        		      for(int i=0; i<n; i++){
+        		          arr[i]=in.nextInt();
+        		      }
+        		      
+        		      Function(arr, n);
+        		  }
+        		      
+        		in.close();
+	        }
+        }
+        
+        
+        
+        ////////////////////////////////////////////
+        
+        This code will give TLE in the 5th case, so try coding this logic in C++

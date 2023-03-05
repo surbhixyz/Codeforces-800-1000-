@@ -1,0 +1,103 @@
+        import java.util.*;
+
+        public class Solution {
+           
+            public static void Function(String str, int n){
+                String flag="";
+                int i=0;
+                int j=n-1;
+                
+                while(i<j){
+                    
+                    if(str.charAt(i)!=str.charAt(j)){
+                        flag=flag+"T";
+                    } 
+                    
+                    else{
+                        flag=flag+"F";
+                    }
+                    
+                    i++; j--;
+                }
+                
+                int c=0;
+                for(int k=0; k<flag.length(); k++){
+                    if(flag.charAt(k)=='T'){
+                        c++;
+                    }
+                }
+                
+               int x=longestTSubstringLength(flag);
+               if(x==c){
+                   System.out.println("YES");
+               }
+               else{
+                   System.out.println("NO");
+               }
+            }
+            
+            public static int longestTSubstringLength(String s) {
+                int n = s.length();
+                int maxLength = 0;
+                for (int i = 0; i < n; i++) {
+                    if (s.charAt(i) == 'T') {
+                        int j = i;
+                        while (j < n && s.charAt(j) == 'T') {
+                            j++;
+                        }
+                        int length = j - i;
+                        if (length > maxLength) {
+                            maxLength = length;
+                        }
+                        i = j - 1;
+                    }
+                }
+                return maxLength;
+}
+            
+	        public static void main(String[] args) {
+	            
+                Scanner in = new Scanner(System.in);
+        		  int num=in.nextInt();
+
+        		  for(int i=0; i<num; i++){
+        		      int n=in.nextInt();
+        		      String str=in.next();
+        		      Function(str, n);
+        		  }
+        		      
+        		in.close();
+	        }
+        }          
+
+///////////////////////////////////////////////////////
+          
+          
+Better approach
+
+          int i=0,j=s.length()-1;
+	        char ch[]=s.toCharArray();
+	        while(i<=j)
+	        {
+	            if(ch[i]==ch[j])
+	            {
+	                i++; j--;
+	                continue;
+	            }
+	            break;
+	            
+	        }
+	        while(i<=j)
+	        {
+	            if(ch[i]!=ch[j])
+	            {
+	                ch[i]=ch[j];
+	                i++; j--;
+	                continue;
+	            }
+	            break;
+	        }
+	        String str=new String(ch);
+	        String rev=new StringBuilder(str).reverse().toString();
+	        if(rev.equals(str)) System.out.println("Yes");
+	        else System.out.println("No");

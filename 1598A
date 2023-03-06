@@ -1,0 +1,76 @@
+        import java.util.*;
+
+        public class Solution {
+            
+            static int [] row={-1, 1, 0, 0, 1, -1};
+            static int [] col={0, 0, -1, 1, 1, 1};
+            public static boolean dfs(char [][]mat, int i, int j, boolean [][] visited){
+                
+                if(mat[i][j]=='1'){
+                    return false;
+                }
+                
+                else if( i==1 && j==mat[0].length-1){
+                    return true;
+                }
+                else{
+                    for(int m=0; m<6; m++){
+                        int newrow=i+row[m];
+                        int newcol=j+col[m];
+                        
+                        if(newrow>=0 && newcol >=0 && newrow<mat.length && newcol<mat[0].length && !visited[newrow][newcol]){
+                            visited[newrow][newcol]=true;
+                            if(dfs(mat, newrow, newcol, visited)){
+                                return true;
+                            }
+                        } 
+                    }
+                }
+                return false;
+                    
+            }
+	        public static void main(String[] args) {
+	            
+                
+        		Scanner sc = new Scanner(System.in);
+                 int t = sc.nextInt();
+                 
+                 while(t-->0) {
+                	 int n =sc.nextInt();
+               
+                char [][] mat= new char[2][n];
+                    for(int i=0; i<2; i++){
+                        char [] ch= sc.next().toCharArray();
+                        for(int j=0; j<n; j++){
+                            mat[i][j]=ch[j];
+                        }
+                    }
+        		  
+        		   boolean [][] visited= new boolean [2][n];
+        		   visited[0][0]=true;
+        		   boolean ans=dfs(mat, 0, 0, visited);
+        		   
+        		  if (ans) System.out.println("YES");
+        		  else System.out.println("NO");
+        		}
+                
+                 sc.close();
+	        }
+        }
+        
+        
+        
+        ///////////////////////////////////////////
+        
+        Quick Approach:
+        
+        
+	 int n =sc.nextInt();
+	 String s1= sc.next();
+	 String s2 =sc.next();
+   String res= "YES";
+   for(int i =1;i<n-1;i++)
+         if (s1.charAt(i)=='1' && '1'==s2.charAt(i))
+           res= "NO";
+   System.out.println(res);
+	

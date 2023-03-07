@@ -71,3 +71,44 @@
 	
 	5. The purpose of "if(child==parent)" check is to avoid traversing the same path multiple times and prevent an infinite loop in the DFS traversal.
 	   If the child node is indeed the parent node, then we skip the iteration using the "continue" statement, because we don't want to revisit the parent node.
+	   
+	   
+	   
+	   
+	   
+	   
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+	   
+	   
+import java.util.*;
+
+public class Solution{
+    
+    static ArrayList <ArrayList <Integer>> graph= new ArrayList <ArrayList <Integer>> ();
+    static boolean [] visited;
+    
+    public static void main(String[] args) {
+        
+        Scanner in=new Scanner(System.in);
+        int n= in.nextInt();
+        
+        int [] dp = new int [n+1];
+        for(int i=0; i<=n; i++){
+            graph.add(new ArrayList <Integer>());
+        }
+        
+        for(int i=1; i<=n; i++){
+            int boss=in.nextInt();
+            if(boss==-1){
+                graph.get(0).add(i);
+            }
+            else{
+                graph.get(boss).add(i);
+            }
+            
+        }
+        
+        dfs(0,0,dp);
+        System.out.println(dp[0]-1);
+    }
+}

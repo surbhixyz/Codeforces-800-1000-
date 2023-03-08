@@ -1,0 +1,45 @@
+import java.util.*;
+
+public class Solution{
+   
+   public static int checkIfDivisible(String s, int n){
+       int ans1=Integer.MAX_VALUE;
+       int ans2=Integer.MAX_VALUE;
+       
+       if(s.contains("5")){
+           int index=s.lastIndexOf('5');
+           for(int i=index-1; i>=0; i--){
+               if(s.charAt(i)=='2' || s.charAt(i)=='7'){
+                   ans1=n-i-2;
+                   break;
+               }
+           }
+       }
+       
+       if(s.contains("0")){
+           int index=s.lastIndexOf('0');
+           for(int i=index-1; i>=0; i--){
+               if(s.charAt(i)=='0' || s.charAt(i)=='5'){
+                   ans2=n-i-2;
+                   break;
+               }
+           }
+       }
+       
+       return Math.min(ans1, ans2);
+   }
+    public static void main(String[] args) {
+        
+        Scanner in=new Scanner(System.in);
+        int n= in.nextInt();
+        
+        for(int i=0; i<n; i++){
+            String s=in.next();
+            int ans=checkIfDivisible(s, s.length());
+            System.out.println(ans);
+        }
+        
+        in.close();
+    }
+    
+}

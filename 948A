@@ -1,0 +1,64 @@
+import java.util.*;
+import java.io.*;
+
+public class Solution{
+    
+    static int [] dir= {0, 1, 0, -1, 0};
+    
+    
+    public static void SheepWolfDog(int r, int c, char [][] mat){
+        
+        for(int i=0; i<mat.length; i++){
+            for(int j=0; j<mat[0].length; j++){
+                
+                if(mat[i][j]=='S'){
+                    
+                    for(int k=0; k<4; k++){
+                        
+                        int newX=i+dir[k];
+                        int newY=j+dir[k+1];
+                        
+                        if(newX<0 || newY<0 || newX>=mat.length || newY>=mat[0].length)
+                            continue;
+                            
+                        if(mat[newX][newY]=='W'){
+                            System.out.println("NO");
+                                return ;
+                            }
+                            
+                        if(mat[newX][newY]=='.')
+                                mat[newX][newY]='D';
+                            
+                        
+                    }
+                }
+            }
+        }
+       System.out.println("YES");
+        
+        for(int i=0; i<r; i++){
+            for(int j=0; j<c; j++){
+                System.out.print(mat[i][j]);
+            }
+            System.out.println();
+        }
+    }
+    
+    public static void main(String[] args) throws IOException {
+        
+        BufferedReader br= new BufferedReader (new InputStreamReader (System.in));
+       
+        String line [] = br.readLine().split(" ");
+        int r=Integer.parseInt(line[0]);
+        int c=Integer.parseInt(line[1]);
+        
+        char [][] mat= new char [r][c];
+        for(int i=0; i<r; i++){
+            mat[i]=br.readLine().toCharArray();
+            
+        }
+        
+        SheepWolfDog(r, c, mat);
+    }
+    
+}

@@ -1,0 +1,30 @@
+import java.util.*;
+import java.io.*;
+
+public class Solution{
+    
+    public static void main(String[] args) throws IOException {
+        
+        BufferedReader br= new BufferedReader (new InputStreamReader (System.in));
+         String nq [] = br.readLine().split(" ");
+         int len=Integer.parseInt(nq[0]);
+         int n=Integer.parseInt(nq[1]);
+         String str= br.readLine();
+        
+        int [] dp= new int[len+1];
+        
+        for(int i=1; i<=len; i++){
+            int val=str.charAt(i-1)-'a'+1;
+            dp[i]=dp[i-1]+val;
+        }
+        
+        
+        for(int j=0; j<n; j++){
+            String line [] = br.readLine().split(" ");
+            int left=Integer.parseInt(line[0]);
+            int right=Integer.parseInt(line[1]);
+            System.out.println(dp[right]-dp[left-1]);
+        }
+    }
+    
+        }

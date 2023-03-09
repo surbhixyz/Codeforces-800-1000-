@@ -9,7 +9,7 @@ public class Solution {
         int t=Integer.parseInt(br.readLine());
         
         while(t-->0){
-             int c1=0; int c2=0; int sum=0;
+             int c1=0; int c2=0;
             int n=Integer.parseInt(br.readLine());
             
             String [] line= br.readLine().split(" ");
@@ -20,7 +20,6 @@ public class Solution {
             
             
             for(int i=0; i<n; i++){
-                sum+=arr[i];
                 if(arr[i]==1){
                     c1++;
                 }

@@ -1,0 +1,88 @@
+import java.util.*;
+import java.io.*;
+
+public class Solution {
+    
+    public static void print(char []arr){
+        StringBuilder sb= new StringBuilder();
+        for( char ch: arr){
+            sb.append(ch);
+        }
+        System.out.println(sb);
+    }
+    
+    public static void MochaRB(char [] arr, int n){
+        
+         boolean all=true;
+            for(int i=0; i<n; i++){
+                if(arr[i]!='?'){
+                    all=false;
+                    break;
+                }
+            }
+            
+            if(all){
+                StringBuilder sb= new StringBuilder();
+                for(int i=0; i<n; i++){
+                    if(i%2==0)
+                        sb.append('R');
+                    else
+                        sb.append('B');
+                }
+                System.out.println(sb);
+                return;
+            }
+            
+            
+            
+            for(int i=0; i<n; i++){
+                
+                if(arr[i]!='?'){
+                    int index=i-1;
+                    
+                    while(index>=0 && arr[index]=='?'){
+                        if(arr[index+1]=='B')
+                        arr[index]='R';
+                    
+                    else
+                    arr[index]='B';
+                    
+                        index--;
+                    }
+                       
+                       
+                    index=i+1;
+                    while(index<n && arr[index]=='?'){
+                        if(arr[index-1]=='B')
+                        arr[index]='R';
+                    
+                    else
+                    arr[index]='B';
+                    
+                        index++;
+                    }
+                }
+            }
+            
+          print(arr);
+    }
+    
+    public static void main(String[] args) throws IOException {
+        
+        BufferedReader br= new BufferedReader (new InputStreamReader (System.in));
+        
+        int t=Integer.parseInt(br.readLine());
+       
+        while(t-->0){
+            
+            int n=Integer.parseInt(br.readLine());
+            char [] arr=br.readLine().toCharArray();
+            
+            MochaRB(arr, n);
+           
+        }
+        
+        
+       }
+    
+        }

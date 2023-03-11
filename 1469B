@@ -1,0 +1,37 @@
+import java.util.*;
+import java.io.*;
+
+public class Solution {
+    
+    public static void main(String[] args) throws IOException {
+        
+        Scanner in=new Scanner (System.in);
+        int t=in.nextInt();
+
+        while(t-->0){
+            
+             int n=in.nextInt();
+             int [] narr= new int [n];
+             int maxR=0;
+             int tempR=0;
+             
+             for(int i=0; i<n; i++){
+                  narr[i]=in.nextInt();
+                  tempR+=narr[i];
+                  maxR=Math.max(maxR, tempR);
+              }
+              int m=in.nextInt();
+              int [] marr= new int [m];
+              int maxB=0;
+              int tempB=0;
+              
+              for(int i=0; i<m; i++){
+                  marr[i]=in.nextInt();
+                  tempB+=marr[i];
+                  maxB=Math.max(maxB, tempB);
+              }
+              
+              System.out.println(maxR+maxB);
+        }
+    }
+}

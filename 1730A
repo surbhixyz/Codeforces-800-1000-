@@ -1,0 +1,34 @@
+import java.util.*;
+import java.io.*;
+
+public class Solution {
+    
+    public static void main(String[] args) throws IOException {
+        
+        Scanner in=new Scanner (System.in);
+        int t=in.nextInt();
+
+        while(t-->0){
+            HashMap <Integer, Integer> hm = new HashMap <>();
+             int n=in.nextInt();
+             int c=in.nextInt();
+            for(int i=0; i<n; i++){
+                int ele=in.nextInt();
+                hm.put(ele, hm.getOrDefault(ele, 0)+1);
+            }
+            int cost=0;
+            
+             for(int key: hm.keySet()){
+                 if(hm.get(key)*1 >=c){
+                     cost+=c;
+                 }
+                 else{
+                     cost+=1*hm.get(key);
+                 }
+             }
+             
+             
+             System.out.println(cost);
+        }
+    }
+}

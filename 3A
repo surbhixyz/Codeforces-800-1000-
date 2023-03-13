@@ -1,0 +1,113 @@
+import java.util.*;
+import java.io.*;
+
+public class Solution {
+    
+    static class Cell {
+    int x;
+    int y;
+    int dis;
+    Cell parent;
+    
+    public Cell(int x, int y, int dis, Cell parent){
+        this.x=x;
+        this.y=y;
+        this.dis=dis;
+        this.parent=parent;
+    }
+}
+
+    public static void main(String[] args) throws IOException {
+        
+       BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+       
+       String start=br.readLine();
+       String end=br.readLine();
+       
+       int sx=start.charAt(0)-'a';
+       int sy=start.charAt(1)-'0'-1;
+       int ex=end.charAt(0)-'a';
+       int ey=end.charAt(1)-'0'-1;
+
+    
+    int [] direcX={-1, -1, -1, 0, 0, 1, 1, 1};
+    int [] direcY= {-1, 0, 1, -1, 1, -1, 0, 1};
+       
+       Queue <Cell> q= new LinkedList <Cell>();
+       
+       q.add(new Cell (sx, sy, 0, null));
+   
+      
+       boolean [][] visited = new boolean [8][8];
+       Cell[][] parent = new Cell[8][8];
+
+    
+       visited[sx][sy]=true;
+       
+       
+       
+       while(!q.isEmpty()){
+          Cell t=q.poll();
+           
+         
+           if(t.x==ex && t.y==ey){
+               System.out.println(t.dis);
+               printMoves(parent, t);
+               return;
+           }
+           
+           for(int i=0; i<8; i++){
+               int newX=t.x+ direcX[i];
+               int newY=t.y+ direcY[i];
+               
+               if(newX>=0 && newY>=0 && newX<8 && newY<8 && !visited[newX][newY]){
+                   q.add(new Cell(newX, newY, t.dis+1, t));
+                   visited[newX][newY]=true;
+                   parent[newX][newY] = t;
+               }
+           }
+       }
+       
+       
+        }
+        
+        static void printMoves(Cell[][] parent, Cell current) {
+            if (current.parent != null) {
+                printMoves(parent, current.parent);
+            }
+    
+            if (current.parent != null) {
+                int dx = current.x - current.parent.x;
+                int dy = current.y - current.parent.y;
+                
+                if (dx == -1 && dy == -1) {
+                    System.out.println("LD");
+                } 
+                else if (dx == -1 && dy == 0) {
+                    System.out.println("L");
+                } 
+                else if (dx == -1 && dy == 1) {
+                    System.out.println("LU");
+                }
+                else if (dx == 0 && dy == 1) {
+                    System.out.println("U");
+                } 
+                else if (dx == 1 && dy == 1) {
+                    System.out.println("RU");
+                } 
+                else if (dx == 1 && dy == 0) {
+                    System.out.println("R");
+                }
+                
+                else if (dx == 0 && dy == -1) {
+                    System.out.println("D");
+                }
+                
+                 else if (dx == 1 && dy == -1) {
+                    System.out.println("RD");
+                }
+                
+                }
+    }
+
+}

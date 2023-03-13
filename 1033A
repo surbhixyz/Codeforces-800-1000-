@@ -1,0 +1,66 @@
+import java.util.*;
+import java.io.*;
+
+public class Solution {
+    
+    static class Cell{
+        int x;
+        int y;
+        public Cell(int x, int y){
+            this.x=x;
+            this.y=y;
+        }
+    }
+    
+
+    public static void main(String[] args) throws IOException {
+        
+       BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+       int dim=Integer.parseInt(br.readLine());
+       String [] line1=br.readLine().split(" ");
+       String [] line2=br.readLine().split(" ");
+       String [] line3=br.readLine().split(" ");
+       
+       int Qx=Integer.parseInt(line1[0])-1;
+       int Qy=Integer.parseInt(line1[1])-1;
+       int Kx=Integer.parseInt(line2[0])-1;
+       int Ky=Integer.parseInt(line2[1])-1;
+       int Cx=Integer.parseInt(line3[0])-1;
+       int Cy=Integer.parseInt(line3[1])-1;
+       
+       Queue <Cell> q= new LinkedList <Cell>();
+       
+       q.add(new Cell(Kx, Ky));
+       
+       boolean [][]visited = new boolean [dim][dim];
+       
+       int [] dirX= {-1, -1, -1, 0, 0, 1, 1, 1};
+       int [] dirY= {-1, 0, 1, -1, 1, -1, 0, 1};
+       
+       while(!q.isEmpty()){
+           Cell current= q.poll();
+           
+           if(current.x==Cx && current.y==Cy){
+               System.out.println("YES");
+               return;
+           }
+      
+           for(int i=0; i<8; i++){
+               
+               int newX=current.x+dirX[i];
+               int newY=current.y+dirY[i];
+               
+               if(newX>=0 && newY>=0 && newX<dim && newY<dim && !visited[newX][newY]){
+                   if(!(newX == Qx || newY == Qy || Math.abs(newX - Qx) == Math.abs(newY - Qy))) {
+                       q.add(new Cell(newX, newY));
+                       visited[newX][newY]=true;
+                   }
+               }
+           }
+           
+       }
+       
+       System.out.println("NO");
+       
+    }
+}
